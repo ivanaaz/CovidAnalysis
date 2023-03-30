@@ -26,16 +26,6 @@ SELECT location,
   GROUP BY location
  ORDER BY death_count desc;
  
-
--- percent people who got hospitalized per 100
-SELECT location,
-       date,
-       hosp_patients,
-       new_cases,
-       total_cases,
-       SUM(hosp_patients) OVER (PARTITION BY location ORDER BY date) AS sum_hospitalizations,
-       (SUM(hosp_patients) OVER (PARTITION BY location ORDER BY date) / total_cases) * 100 AS percent_hospitalized
-  FROM full_covid_data;
   
 
 -- what countries have the highest percent of people infected based on their highest total cases
